@@ -21,3 +21,14 @@ ved1: "Ведомство 1",
 ved2: "Ведомство 2",
 ved3: "Ведомство 3"
 }
+
+function getTab(){
+    var resString = "";
+    for(item in Vedomstva)
+    {   
+        resString += '<div class="tab-pane fade in" id="'+item+'">';
+        resString+='<h2>'+Vedomstva[item]+'</h2><hr><table class="table table-striped table-hover"><col width="10%"><col width="10%"><col width="30%">';
+        resString+='<col width="20%"><col width="30%"><thead><tr><th>#</th><th>Дата</th><th>ФИО заявителя</th><th>Статус</th><th>Действия</th></tr>';
+        resString+='</thead><tbody></tbody></table></div>';}
+        return resString;
+    }
