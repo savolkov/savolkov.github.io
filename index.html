@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bootstrap 101 Template</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="col-md-2">
+                <ul class="nav nav-pills nav-stacked" role="tablist" id = "myTab">
+                </ul>
+            </div>
+            <div class="col-md-10">
+            <div class ="tab-content">
+                <div class="tab-pane fade in active" id="ved1">
+                <h2>Ведомство 1</h2>
+                    <hr>
+                    <table class="table table-striped table-hover">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="30%">
+                        <col width="20%">
+                        <col width="30%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Дата</th>
+                                <th>ФИО заявителя</th>
+                                <th>Статус</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="ved2">
+                    <h2>Ведомство 2</h2>
+                    <hr>
+                    <!-- Table -->
+                    
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <footer>
+    <p>© Company 2014</p>
+    </footer>
+</div> <!-- /container -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/my.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            //заполнение табов
+            var menuHtml="";
+            for(item in Vedomstva){
+                console.log(item);
+                menuHtml+="<li id=\"pill"+item+"\"><a href=\"#"+item+"\" data-toggle=\"pill\">"+Vedomstva[item]+" <span class=\"label label-success\">Обработана</span></a></li>";
+            }
+            $("#myTab").html(menuHtml);
+            $("#pillved1").addClass("active");
+            //табы
+            $("#myTab a").click(function(e){
+                e.preventDefault();
+                $(this).tab('show');
+            });
+            //заполнение таблицы
+            $("#ved1 tbody").html(tableRecord(1, "01.01.2001", "Иванов Иван", ComplaintStatus.recieved, "tab"));
+        });
+    </script>
+  
+</body>
+</html>
