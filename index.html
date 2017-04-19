@@ -53,10 +53,9 @@
     <script type="text/javascript">
         $(document).ready(function(){
 
-            //заполнение табов
+            
             var menuHtml="";
-            for(item in Vedomstva){
-                console.log(item);
+            for(item in Vedomstva){ //построение менюхи
                 menuHtml+="<li id=\"pill"+item+"\"><a href=\"#"+item+"\" data-toggle=\"pill\">"+Vedomstva[item]+" <span class=\"label label-success\">Обработана</span></a></li>";
             }
             $("#myTab").html(menuHtml);
@@ -69,9 +68,16 @@
             //заполнение таблицы
             $("#tabContent").html(getTab());
             $("#ved1").addClass("active");
-            $("#ved1 tbody").html(tableRecord(1, "01.01.2001", "Иванов Иван", ComplaintStatus.recieved, "tab"));
-            $("#ved2 tbody").html(tableRecord(1, "01.01.2001", "Иванов Иван", ComplaintStatus.recieved, "tab"));
-            $("#ved3 tbody").html(tableRecord(1, "01.01.2001", "Иванов Иван", ComplaintStatus.recieved, "tab"));
+            // var tableItems='';
+            // tableItems+=tableRecord(1, "01.01.2001", "Иванов Иван", ComplaintStatus.recieved, "tab");
+            // tableItems+=tableRecord(2, "02.01.2001", "Петров Иван", ComplaintStatus.inWork, "tab");
+            // tableItems+=tableRecord(3, "03.01.2001", "Сидоров Иван", ComplaintStatus.reAddressed, "tab");
+            // tableItems+=tableRecord(4, "04.01.2001", "Медведев Иван", ComplaintStatus.done, "tab");
+            // tableItems+=tableRecord(5, "05.01.2001", "Муравьёв Иван", ComplaintStatus.closed, "tab");
+            // $("#ved1 tbody").html(tableItems);
+            // $("#ved2 tbody").html(tableRecord(1, "01.01.2001", "Иванов Иван", ComplaintStatus.recieved, "tab"));
+            // $("#ved3 tbody").html(tableRecord(1, "01.01.2001", "Иванов Иван", ComplaintStatus.recieved, "tab"));
+            fillInTable()
         });
     </script>
   
