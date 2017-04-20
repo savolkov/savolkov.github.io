@@ -27,13 +27,37 @@
     <br>
     <div class="container-fluid">
         <div class="row-fluid">
-            <div class="col-md-2">
-                <ul class="nav nav-pills nav-stacked" role="tablist" id = "myTab">
+            <!--МЕНЮ СЛЕВА-->
+            <div class="col-md-2"> 
+                <ul class="nav nav-pills nav-stacked" role="tablist" id = "mainMenu">
                 </ul>
             </div>
+            <!--//МЕНЮ СЛЕВА-->
+
             <div class="col-md-10">
-            <div class ="tab-content" id="tabContent">
-             <!--ЗАПОЛНЯЕТСЯ JS-->           
+            <div class ="tab-content">
+                <div class="tab-pane fade in active" id="ved1">
+                <h2 id="tableHeading"></h2>
+                    <hr>
+                    <table class="table table-striped table-hover">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="30%">
+                        <col width="20%">
+                        <col width="30%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Дата</th>
+                                <th>ФИО заявителя</th>
+                                <th>Статус</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableContext">
+                        </tbody>
+                    </table>
+                </div>
             </div>
             </div>
         </div>
@@ -52,33 +76,17 @@
     <script src="js/my.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-
-            
-            var menuHtml="";
-            for(item in Vedomstva){ //построение менюхи
-                menuHtml+="<li id=\"pill"+item+"\"><a href=\"#"+item+"\" data-toggle=\"pill\">"+Vedomstva[item]+" <span class=\"label label-success\">Обработана</span></a></li>";
-            }
-            $("#myTab").html(menuHtml);
-            $("#pillved1").addClass("active");
-            //табы
-            $("#myTab a").click(function(e){
+            buildMenu();
+            $("#mainMenu li a").click(function(e){
                 e.preventDefault();
-                $(this).tab('show');
+                $("#mainMenu li").removeClass('active');
+                $(e.currentTarget.parentElement).toggleClass('active');
+                var name = e.currentTarget.innerHTML.slice(0,e.currentTarget.innerHTML.indexOf("<")-1);
+                buildTable(name);
             });
-            //заполнение таблицы
-            $("#tabContent").html(getTab());
-            $("#ved1").addClass("active");
-            // var tableItems='';
-            // tableItems+=tableRecord(1, "01.01.2001", "Иванов Иван", ComplaintStatus.recieved, "tab");
-            // tableItems+=tableRecord(2, "02.01.2001", "Петров Иван", ComplaintStatus.inWork, "tab");
-            // tableItems+=tableRecord(3, "03.01.2001", "Сидоров Иван", ComplaintStatus.reAddressed, "tab");
-            // tableItems+=tableRecord(4, "04.01.2001", "Медведев Иван", ComplaintStatus.done, "tab");
-            // tableItems+=tableRecord(5, "05.01.2001", "Муравьёв Иван", ComplaintStatus.closed, "tab");
-            // $("#ved1 tbody").html(tableItems);
-            // $("#ved2 tbody").html(tableRecord(1, "01.01.2001", "Иванов Иван", ComplaintStatus.recieved, "tab"));
-            // $("#ved3 tbody").html(tableRecord(1, "01.01.2001", "Иванов Иван", ComplaintStatus.recieved, "tab"));
-            fillInTable()
+            
         });
+        
     </script>
   
 </body>
