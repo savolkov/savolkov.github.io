@@ -114,9 +114,8 @@ function tableRecord(number, dateTime, fullName, status, ved) { //получаю
     var html =""
     html+='<tr><td>'+number+'</td><td>'+dateTime+'</td>';
     html+='<td>'+fullName+'</td><td>'+statusString+'</td>';
-    // html+='<td><div style="float: left"><div class="btn-group" ><a class="btn dropdown-toggle" data-toggle="dropdown" href="#">'
-    // html+='Переместить<span class="caret"></span></a><ul class="dropdown-menu">'+buildContextMenu(ved)+'</ul></div>'
-    html+='<td><a class="btn" href="#myModal" data-toggle="modal">Переместить</a></td>'
+    html+='<td><div style="float: left"><div class="btn-group" ><a class="btn dropdown-toggle" data-toggle="dropdown" href="#">'
+    html+='Переместить<span class="caret"></span></a><ul class="dropdown-menu">'+buildContextMenu(ved)+'</ul></div>'
     return html;
 }
 

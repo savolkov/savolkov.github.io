@@ -62,23 +62,7 @@
             </div>
         </div>
     </div>
-
     <hr>
-
-<div class="modal hide fade" id="myModal">
-<div class="modal-header" >
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>
-<h3>Заголовок модального элемента</h3>
-</div>
-<div class="modal-body" >
-<p>Некое изящное тело……</p>
-</div>
-<div class="modal-footer" >
-<a href="#" class="btn" >Закрыть</a>
-<a href="#" class="btn btn-primary" >Сохранить изменения</a>
-</div>
-</div>
-
     <footer>
     <p>© Company 2014</p>
     </footer>
@@ -92,6 +76,7 @@
     <script type="text/javascript">
         $(document).ready(function(){
             buildMenu();
+            buildTable(Tabs[0]);
             $("#mainMenu li a").click(function(e){
                 e.preventDefault();
                 $("#mainMenu li").removeClass('active');
