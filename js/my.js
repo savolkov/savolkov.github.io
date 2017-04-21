@@ -16,14 +16,14 @@ records = [
         ID: 12,
         dateTime: "19.04.2017",
         fullName: "Иванов Иван Иваныч",
-        status: ComplaintStatus.recieved
+        status: ComplaintStatus.done
     },
     {
         ved: "Ведомство 2",
         ID: 2,
         dateTime: "19.04.2017",
         fullName: "Иванов Иван Иваныч",
-        status: ComplaintStatus.recieved
+        status: ComplaintStatus.reAddressed
     },
     {   
         ved: "Ведомство 3",
@@ -44,7 +44,7 @@ records = [
         ID: 1123,
         dateTime: "19.04.2017",
         fullName: "Иванов Иван Иваныч-dnjhj",
-        status: ComplaintStatus.recieved
+        status: ComplaintStatus.done
     }
 ];
 Tabs = []
@@ -57,6 +57,24 @@ function ifInArray(item, array){
     }
     return false;
 }
+function getVedStatus(name){
+// У каждого ведомства должен отображаться комплексный статус. Комплексный статус складывается из статусов всех жалоб:
+
+// Если есть хотя бы одна жалоба со статусом «Поступила»
+// и нет жалоб со статусом «Перенаправлена», то отображать комплексный статус = «Новое».
+// При переносе жалобы в другое ведомство изменять ее статус на «Перенаправлена»,
+// комплексный статус ведомства должен измениться на «Срочное».
+    var complexStatus = "";
+    for(item in records){
+        currentItem = records[item];
+        if(currentItem.ved===name){
+           if(currentItem.status === ComplaintStatus.recieved) complexStatus = ' <span class="label label-success">Новое</span>';
+           if(currentItem.status === ComplaintStatus.reAddressed) complexStatus = ' <span class="label label-warning">Срочное</span>';
+        }
+    }
+    return complexStatus;
+}
+
 function buildMenu(){
     for(item in records){
         currentItem = records[item];
@@ -68,7 +86,7 @@ function buildMenu(){
     for(tab in Tabs){
         currentTab = Tabs[tab];
         var html = $("#mainMenu").html()
-        html+='<li><a href="#">'+currentTab+' <span class="label label-success">Обработана</span></a></li>';
+        html+='<li><a href="#">'+currentTab+getVedStatus(currentTab)+' </a></li>';
         $("#mainMenu").html(html)
         if(flag === false){
             flag = true;
@@ -76,9 +94,18 @@ function buildMenu(){
         }
     }
 }
-
-function tableRecord(number, dateTime, fullName, status) { //получаю <tr>
-    var statusString;
+function buildContextMenu(name){
+    var html = "";
+        for(tab in Tabs){  
+            currentTab = Tabs[tab];      
+            if(currentTab!=name){
+                html+='<li><a href="#">'+currentTab+'</a></li>'            
+        }
+    }
+    return html;
+}
+function tableRecord(number, dateTime, fullName, status, ved) { //получаю <tr>
+    var statusString = "";
     if(status===ComplaintStatus.recieved){statusString = '<span class="label label-warning">'+status+'</span>';}
     if(status===ComplaintStatus.inWork){statusString = '<span class="label label-info">'+status+'</span>';}
     if(status===ComplaintStatus.reAddressed){statusString = '<span class="label label-warning">'+status+'</span>';}
@@ -87,7 +114,9 @@ function tableRecord(number, dateTime, fullName, status) { //получаю <tr>
     var html =""
     html+='<tr><td>'+number+'</td><td>'+dateTime+'</td>';
     html+='<td>'+fullName+'</td><td>'+statusString+'</td>';
-    html+='<td><div style=\"float: left\"><div class=\"dropdown\" style=\"display: inline-block\"><a data-toggle=\"dropdown\" href=\"#\">Переместить</a><ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"dLabel\"><li>Ved1</li><li>Ved2</li></ul></div><a href=\"#\"><i class=\"glyphicon glyphicon-trash\"></i></a></div></td></tr>';
+    // html+='<td><div style="float: left"><div class="btn-group" ><a class="btn dropdown-toggle" data-toggle="dropdown" href="#">'
+    // html+='Переместить<span class="caret"></span></a><ul class="dropdown-menu">'+buildContextMenu(ved)+'</ul></div>'
+    html+='<td><a class="btn" href="#myModal" data-toggle="modal">Переместить</a></td>'
     return html;
 }
 
@@ -99,7 +128,7 @@ function buildTable(name){
         currentItem = records[item];
         if(currentItem.ved===name){
             html += $("#tableContext").html()
-            html+=tableRecord(currentItem.ID, currentItem.dateTime, currentItem.fullName, currentItem.status)
+            html+=tableRecord(currentItem.ID, currentItem.dateTime, currentItem.fullName, currentItem.status,currentItem.ved)
         }
     }
     $("#tableContext").html(html);
