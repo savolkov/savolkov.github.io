@@ -117,7 +117,7 @@ function getVedStatus(name){
     return complexStatus;
 }
 
-function buildMenu(){
+function buildMenu(makeActive){
     
     for(item in records){ //массив таблиц, если не было такой, добавляем.
         currentItem = records[item];
@@ -126,14 +126,11 @@ function buildMenu(){
         }
     }
 
-    flag = false; //первый проход
     var html = "";
     for(tab in Tabs){
         currentTab = Tabs[tab];
-        html+='<li><a href="#">'+currentTab+ getVedStatus(currentTab.trim()) +' </a></li>';        
-        if(flag == false){
-            flag = true; //если первый проход, помечаем первый таб активным
-        }
+        if(currentTab==makeActive) html+='<li class = "active"><a href="#">'+currentTab+ getVedStatus(currentTab.trim()) +' </a></li>';
+        else html+='<li><a href="#">'+currentTab+ getVedStatus(currentTab.trim()) +' </a></li>';
     }
     $("#mainMenu").html(html);    
 }
