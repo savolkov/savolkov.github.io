@@ -13,16 +13,16 @@ ComplaintStatus = { //Статус (Поступила; В обработке; �
 records = [
     {
         ved: "Ведомство 1",
-        ID: 12,
+        ID: 1,
         dateTime: "19.04.2017",
-        fullName: "Иванов Иван Иваныч",
+        fullName: "Мамедова Марта Романовна",
         status: ComplaintStatus.recieved
     },
     {
         ved: "Ведомство 2",
         ID: 2,
         dateTime: "19.04.2017",
-        fullName: "Иванов Иван Иваныч",
+        fullName: "Михайлов Владислав Святославович",
         status: ComplaintStatus.reAddressed
     },
     {   
@@ -30,21 +30,63 @@ records = [
         ID: 3,
         dateTime: "19.04.2017",
         fullName: "Иванов Иван Иваныч",
-        status: ComplaintStatus.recieved
+        status: ComplaintStatus.inWork
+    },
+    {   
+        ved: "Ведомство 5",
+        ID: 4,
+        dateTime: "19.04.2017",
+        fullName: "Сысолятина Наталия Платоновна",
+        status: ComplaintStatus.closed
     },
     {   
         ved: "Ведомство 5",
         ID: 5,
         dateTime: "19.04.2017",
-        fullName: "Иванов Иван Иваныч",
+        fullName: "Городнов Амаяк Вениаминович",
         status: ComplaintStatus.recieved
     },
-    {   
-        ved: "Ведомство 1",
-        ID: 1123,
+        {   
+        ved: "Ведомство 6",
+        ID: 6,
         dateTime: "19.04.2017",
-        fullName: "Иванов Иван Иваныч-dnjhj",
-        status: ComplaintStatus.done
+        fullName: "Наумова Яна Валерьевна",
+        status: ComplaintStatus.inWork
+    },
+        {   
+        ved: "Ведомство 4",
+        ID: 7,
+        dateTime: "12.124.2017",
+        fullName: "Козлова Стела Тарасовна",
+        status: ComplaintStatus.recieved
+    },
+        {   
+        ved: "Ведомство 3",
+        ID: 8,
+        dateTime: "03.11.2017",
+        fullName: "Полякова Клара Аркадьевна",
+        status: ComplaintStatus.inWork
+    },
+        {   
+        ved: "Ведомство 3",
+        ID: 9,
+        dateTime: "01.05.2017",
+        fullName: "Литвина Лия Сергеевна",
+        status: ComplaintStatus.recieved
+    },
+        {   
+        ved: "Ведомство 1",
+        ID: 10,
+        dateTime: "23.05.2017",
+        fullName: "Виноградов Ипатий Кириллович",
+        status: ComplaintStatus.inWork
+    },
+        {   
+        ved: "Ведомство 5",
+        ID: 11,
+        dateTime: "11.04.2016",
+        fullName: "Ильин Август Федорович",
+        status: ComplaintStatus.recieved
     }
 ];
 Tabs = []

@@ -5,20 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Bootstrap 101 Template</title>
+    <title>Ведомства</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
   </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">Работа с записями</a>
         </div>
       </div>
     </div>
@@ -63,8 +57,7 @@
         </div>
     </div>
     <hr>
-    <footer>
-    <p>© Company 2014</p>
+    <footer style="position: absolute; bottom:0; width: 100%; height: 60px; background-color: #fefefe;">
     </footer>
 </div> <!-- /container -->
     <!-- Bootstrap core JavaScript
@@ -93,17 +86,12 @@
             
             $("tbody").on('click','.btn-group ul li a', function(e){
                 e.preventDefault();
-                console.log("Click!"+e.currentTarget.textContent);
                 var row = "";
                 row = e.currentTarget.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
                 var id = 0;
                 id = $($(row).filter("td").context.cells[0]).html();
-                console.log("ID "+id);
                 for(var i = 0; i<records.length;i++){
-                    console.log(records[i]);
-                    console.log((records[i].ID == id)+"  ID"+id);
                     if(records[i].ID == id) {
-                        console.log("ID совпали");
                         records[i].ved = e.currentTarget.textContent.trim();
                         records[i].status = ComplaintStatus.reAddressed;
                         break;}
