@@ -67,9 +67,9 @@ function getVedStatus(name){
     var complexStatus = "";
     for(item in records){
         currentItem = records[item];
-        if(currentItem.ved===name){
-           if(currentItem.status === ComplaintStatus.recieved) complexStatus = ' <span class="label label-success">Новое</span>';
-           if(currentItem.status === ComplaintStatus.reAddressed) complexStatus = ' <span class="label label-warning">Срочное</span>';
+        if(currentItem.ved==name){
+           if(currentItem.status == ComplaintStatus.recieved) complexStatus = ' <span class="label label-success">Новое</span>';
+           if(currentItem.status == ComplaintStatus.reAddressed){complexStatus = ' <span class="label label-warning">Срочное</span>'; break;} 
         }
     }
     return complexStatus;
@@ -88,8 +88,8 @@ function buildMenu(){
     var html = "";
     for(tab in Tabs){
         currentTab = Tabs[tab];
-        html+='<li><a href="#">'+currentTab+getVedStatus(currentTab.trim())+' </a></li>';        
-        if(flag === false){
+        html+='<li><a href="#">'+currentTab+ getVedStatus(currentTab.trim()) +' </a></li>';        
+        if(flag == false){
             flag = true; //если первый проход, помечаем первый таб активным
         }
     }
@@ -116,23 +116,22 @@ function tableRecord(number, dateTime, fullName, status, ved) { //получаю
     html+='<tr><td>'+number+'</td><td>'+dateTime+'</td>';
     html+='<td>'+fullName+'</td><td>'+statusString+'</td>';
     if(status != ComplaintStatus.closed && status != ComplaintStatus.done){
-    html+='<td><div style="float: left"><div id="btns" class="btn-group" ><a class="btn dropdown-toggle" data-toggle="dropdown" href="#">'
-    html+='Переместить<span class="caret"></span></a><ul class="dropdown-menu">'+buildContextMenu(ved)+'</ul></div>'
-}
-else html+='<td></td>'
-
+        html+='<td><div style="float: left"><div id="btns" class="btn-group" ><a class="btn dropdown-toggle" data-toggle="dropdown" href="#">'
+        html+='Переместить<span class="caret"></span></a><ul class="dropdown-menu">'+buildContextMenu(ved)+'</ul></div>'
+    }
+    else
+        html+='<td></td>';
     return html;
 }
 
 function buildTable(name){
-    $("#tableContext").html("");
     $("#tableHeading").html(name);
     var html = "";
     for(item in records){
         currentItem = records[item];
-        if(currentItem.ved===name){
+        if(currentItem.ved==name){
             // html += $("#tableContext").html()
-            html+=tableRecord(currentItem.ID, currentItem.dateTime, currentItem.fullName, currentItem.status,currentItem.ved)
+            html+=tableRecord(currentItem.ID, currentItem.dateTime, currentItem.fullName, currentItem.status, currentItem.ved)
         }
     }
     $("#tableContext").html(html);

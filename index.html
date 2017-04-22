@@ -78,17 +78,20 @@
             var name = "";
             buildMenu();
             $("#mainMenu :first-child").addClass("active");//помечаем первый айтем активным
+            $("#tableContext").html("");
             buildTable(Tabs[0]);
-            $("#mainMenu li a").click(function(e){
+
+            $("#mainMenu").on('click','li a', function(e){
                 e.preventDefault();
                 $("#mainMenu li").removeClass('active');
                 $(e.currentTarget.parentElement).toggleClass('active');
                 if(e.currentTarget.innerHTML.indexOf("<")!=-1) name = e.currentTarget.innerHTML.slice(0,e.currentTarget.innerHTML.indexOf("<")-1);
                 else name = e.currentTarget.innerHTML.trim();
+                $("#tableContext").html("");
                 buildTable(name);
             });
             
-            $(".btn-group ul li a").click(function(e){
+            $("tbody").on('click','.btn-group ul li a', function(e){
                 e.preventDefault();
                 console.log("Click!"+e.currentTarget.textContent);
                 var row = "";
