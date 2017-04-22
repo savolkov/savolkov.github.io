@@ -75,19 +75,41 @@
     <script src="js/my.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
+            var name = "";
             buildMenu();
+            $("#mainMenu :first-child").addClass("active");//помечаем первый айтем активным
             buildTable(Tabs[0]);
             $("#mainMenu li a").click(function(e){
                 e.preventDefault();
                 $("#mainMenu li").removeClass('active');
                 $(e.currentTarget.parentElement).toggleClass('active');
-                var name = "";
-                console.log(e.currentTarget.innerHTML.indexOf("<"))
                 if(e.currentTarget.innerHTML.indexOf("<")!=-1) name = e.currentTarget.innerHTML.slice(0,e.currentTarget.innerHTML.indexOf("<")-1);
                 else name = e.currentTarget.innerHTML.trim();
-                console.log(name);
                 buildTable(name);
-            });            
+            });
+            
+            $(".btn-group ul li a").click(function(e){
+                e.preventDefault();
+                console.log("Click!"+e.currentTarget.textContent);
+                var row = "";
+                row = e.currentTarget.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+                var id = 0;
+                id = $($(row).filter("td").context.cells[0]).html();
+                console.log("ID "+id);
+                for(var i = 0; i<records.length;i++){
+                    console.log(records[i]);
+                    console.log((records[i].ID == id)+"  ID"+id);
+                    if(records[i].ID == id) {
+                        console.log("ID совпали");
+                        records[i].ved = e.currentTarget.textContent.trim();
+                        records[i].status = ComplaintStatus.reAddressed;
+                        break;}
+                }
+                $("#tableContext").html("");
+                buildTable($("#tableHeading").html());
+                $("#mainMenu").html("");
+                buildMenu();                
+            });          
         });
         
     </script>

@@ -16,7 +16,7 @@ records = [
         ID: 12,
         dateTime: "19.04.2017",
         fullName: "Иванов Иван Иваныч",
-        status: ComplaintStatus.done
+        status: ComplaintStatus.recieved
     },
     {
         ved: "Ведомство 2",
@@ -76,23 +76,24 @@ function getVedStatus(name){
 }
 
 function buildMenu(){
-    for(item in records){
+    
+    for(item in records){ //массив таблиц, если не было такой, добавляем.
         currentItem = records[item];
         if(!(ifInArray(currentItem.ved, Tabs))){
-            Tabs.push(currentItem.ved);
+            Tabs.push(currentItem.ved.trim());
         }
     }
-    flag = false;
+
+    flag = false; //первый проход
+    var html = "";
     for(tab in Tabs){
         currentTab = Tabs[tab];
-        var html = $("#mainMenu").html()
-        html+='<li><a href="#">'+currentTab+getVedStatus(currentTab)+' </a></li>';
-        $("#mainMenu").html(html)
+        html+='<li><a href="#">'+currentTab+getVedStatus(currentTab.trim())+' </a></li>';        
         if(flag === false){
-            flag = true;
-            $("#mainMenu li").addClass("active");
+            flag = true; //если первый проход, помечаем первый таб активным
         }
     }
+    $("#mainMenu").html(html);    
 }
 function buildContextMenu(name){
     var html = "";
@@ -114,8 +115,12 @@ function tableRecord(number, dateTime, fullName, status, ved) { //получаю
     var html =""
     html+='<tr><td>'+number+'</td><td>'+dateTime+'</td>';
     html+='<td>'+fullName+'</td><td>'+statusString+'</td>';
-    html+='<td><div style="float: left"><div class="btn-group" ><a class="btn dropdown-toggle" data-toggle="dropdown" href="#">'
+    if(status != ComplaintStatus.closed && status != ComplaintStatus.done){
+    html+='<td><div style="float: left"><div id="btns" class="btn-group" ><a class="btn dropdown-toggle" data-toggle="dropdown" href="#">'
     html+='Переместить<span class="caret"></span></a><ul class="dropdown-menu">'+buildContextMenu(ved)+'</ul></div>'
+}
+else html+='<td></td>'
+
     return html;
 }
 
@@ -126,7 +131,7 @@ function buildTable(name){
     for(item in records){
         currentItem = records[item];
         if(currentItem.ved===name){
-            html += $("#tableContext").html()
+            // html += $("#tableContext").html()
             html+=tableRecord(currentItem.ID, currentItem.dateTime, currentItem.fullName, currentItem.status,currentItem.ved)
         }
     }
