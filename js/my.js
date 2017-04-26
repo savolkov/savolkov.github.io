@@ -148,7 +148,7 @@ function tableRecord(number, dateTime, fullName, status, ved) { //получаю
     var statusString = "";
     if(status===ComplaintStatus.recieved){statusString = '<span class="label label-warning">'+status+'</span>';}
     if(status===ComplaintStatus.inWork){statusString = '<span class="label label-info">'+status+'</span>';}
-    if(status===ComplaintStatus.reAddressed){statusString = '<span class="label label-warning">'+status+'</span>';}
+    if(status===ComplaintStatus.reAddressed){statusString = '<span class="label label-danger">'+status+'</span>';}
     if(status===ComplaintStatus.done){statusString = '<span class="label label-success">'+status+'</span>';}
     if(status===ComplaintStatus.closed){statusString = '<span class="label label-success">'+status+'</span>';}
     var html =""
