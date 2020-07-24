@@ -1,0 +1,43 @@
+body {
+    padding-top: 5rem;
+}
+
+.hi {
+    font-size: 5rem;
+}
+
+.my-name {
+    font-size: 3.5rem;
+}
+
+.main-content {
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+.brief {
+    font-size: 1.4rem;
+    font-weight: 300;
+}
+
+.main-content__contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-content__contacts__item {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    margin-bottom: 2px;
+    font-size: 1.25rem;
+}
+
+.main-content__contacts__item:hover {
+    text-decoration: none;
+}
+
+.main-content__contacts__icon {
+    margin-right: 4px;
+}
