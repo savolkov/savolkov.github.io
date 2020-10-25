@@ -24,6 +24,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 8px;
+}
+
+.title-link {
+    font-size: 1rem;
+    align-self: center;
 }
 
 .main-content__contacts__item {
@@ -39,5 +45,5 @@ body {
 }
 
 .main-content__contacts__icon {
-    margin-right: 4px;
+    margin-right: 6px;
 }
