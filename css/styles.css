@@ -20,6 +20,11 @@ body {
     font-weight: 300;
 }
 
+.brief__img {
+    width: 70px;
+    margin: 2px 8px 2px 8px;
+}
+
 .main-content__contacts {
     display: flex;
     flex-direction: column;
@@ -46,4 +51,8 @@ body {
 
 .main-content__contacts__icon {
     margin-right: 6px;
+}
+
+.cv_small {
+    font-size: 0.9rem;
 }
