@@ -18,11 +18,17 @@ body {
 .brief {
     font-size: 1.4rem;
     font-weight: 300;
+    line-height: 40px;
 }
 
-.brief__img {
+.brief__miro {
     width: 70px;
     margin: 2px 8px 2px 8px;
+}
+
+.brief__gd {
+    height: 25px;
+    margin: 0px 8px 1px 8px;
 }
 
 .main-content__contacts {
